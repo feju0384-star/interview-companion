@@ -3,8 +3,11 @@
 LICENSE
 THIRD_PARTY.md
 README.md
+README.en.md
 .gitignore
 .gitattributes
+.github/ISSUE_TEMPLATE/bug_report.yml
+.github/ISSUE_TEMPLATE/feature_request.yml
 release-files.txt
 requirements.txt
 requirements.lock
@@ -44,6 +47,10 @@ web/services.css
 web/services.js
 web/style.css
 docs/试卖执行手册.md
+docs/使用指南.md
+docs/images/practice-answer.png
+docs/images/practice-review.png
+docs/releases/v0.1.0.md
 scripts/build_release.py
 tests/audio_smoke.py
 tests/browser_practice_smoke.cjs

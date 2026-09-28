@@ -1,0 +1,36 @@
+name: 使用问题 / Bug report
+description: 反馈安装、设备、连接或练习过程中的问题
+title: "[问题] "
+body:
+  - type: markdown
+    attributes:
+      value: "请勿提交 API Key、登录令牌、完整配对链接、真实录音或个人简历。错误日志和截图请先脱敏。"
+  - type: input
+    id: environment
+    attributes:
+      label: 运行环境
+      description: Windows 版本、手机浏览器，以及使用的回答/识别方式；不填账号或密钥。
+      placeholder: Windows 11，手机 Chrome，兼容 API
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: 如何复现
+      description: 从打开应用开始，依次描述做了什么。
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: 期望结果与实际结果
+      description: 可以附已脱敏的错误提示或截图。
+    validations:
+      required: true
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: 隐私检查
+      options:
+        - label: 我已移除密钥、登录令牌、配对链接和个人资料。
+          required: true

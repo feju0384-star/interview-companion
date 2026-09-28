@@ -1,0 +1,16 @@
+name: 功能建议 / Feature request
+description: 描述你在面试练习中遇到的具体困难
+title: "[建议] "
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: 希望解决什么问题
+      description: 描述具体使用场景，无需提供个人简历或账号信息。
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: 期望的操作方式
+      description: 理想情况下，你希望怎样完成这件事？
