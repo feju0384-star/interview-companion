@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#f6f5f0"><meta name="apple-mobile-web-app-capable" content="yes"><title>听答 · 手机控制台</title><link rel="icon" href="/static/icon.svg" type="image/svg+xml"><link rel="stylesheet" href="/static/style.css"><script src="/static/screen.js" defer></script><script src="/static/practice.js" defer></script><script src="/static/diagnostics.js" defer></script><script src="/static/app.js" defer></script></head>
+<body data-page="phone">
+<div class="phone-shell controller-shell">
+  <header class="phone-header"><a class="brand" href="/phone"><span class="brand-mark">听</span><strong>听答</strong></a><div class="phone-header-actions"><span id="connection" class="connection">连接中</span><button id="open-settings" class="button light" disabled>设置</button></div></header>
+  <main>
+    <div class="phone-intro"><p class="eyebrow">YOUR INTERVIEW, IN YOUR HANDS</p><h1>认真听，<span>从容答。</span></h1><p id="phone-status" class="muted">连接电脑后，由手机掌控全程。</p></div>
+    <div id="notice" class="notice" role="alert" hidden></div>
+    <section id="pair-needed" class="card pair-needed" hidden><h2>连接你的面试电脑</h2><p class="muted">扫描电脑配对页的二维码，即可在手机上设置模型、开始监听与管理会话。</p><form id="pair-form"><label for="pair-input" class="field-label">手机控制链接</label><input id="pair-input" type="text" placeholder="http://电脑地址:8765/phone#…" autocomplete="off" required><button class="button primary" type="submit">连接电脑 →</button></form></section>
+    <div id="controller-content" hidden>
+      <div class="mobile-status"><span class="dot" id="capture-dot"></span><strong id="capture-title">电脑已就绪</strong><span class="pill" id="capture-state">未开始</span></div>
+      <div class="phone-tabs" role="tablist" aria-label="手机工作区"><button id="answers-tab" role="tab" aria-selected="true" aria-controls="answers-pane">参考回答</button><button id="practice-tab" role="tab" aria-selected="false" aria-controls="practice-pane" tabindex="-1">练习复盘</button><button id="screen-tab" role="tab" aria-selected="false" aria-controls="screen-pane" tabindex="-1">屏幕解题</button><button id="controls-tab" role="tab" aria-selected="false" aria-controls="controls-pane" tabindex="-1">监听设置</button></div>
+      <section id="answers-pane" role="tabpanel" aria-labelledby="answers-tab">          <section class="answer-area">
+            <div class="area-head"><h2>回答 <span id="answer-count">00</span></h2><div class="answer-tools"><button id="font-down" class="text-button" aria-label="缩小回答字号">A−</button><button id="font-up" class="text-button" aria-label="放大回答字号">A+</button><button id="clear" class="text-button">清空会话</button></div></div>
+            <div id="answers" class="answers" aria-live="polite"><div class="empty-state"><div class="empty-orbit"><span>✦</span></div><h3>下一个好回答，从听懂问题开始。</h3><p>点击下方开始监听，接收问题与回答。<br>也可以先体验演示，检查连接。</p><button id="demo" class="button light">体验演示 <span>→</span></button><small>无需 API Key · 固定示例回答</small></div></div>
+          </section>
+          <form id="ask-form" class="manual card"><label for="question">补充或修改问题</label><div class="manual-row"><textarea id="question" maxlength="12000" rows="2" placeholder="也可以手动输入问题，例如：请介绍你最有代表性的项目。"></textarea><button id="ask-button" class="button primary" type="submit">生成回答 <span>↑</span></button></div><p class="muted small">新问题会中止上一条正在生成的回答，已收到的内容会保留。</p></form>
+</section>
+      <section id="practice-pane" role="tabpanel" aria-labelledby="practice-tab" hidden>
+        <section class="practice-card card">
+          <div class="section-head"><h2>先说出你的回答。</h2><span class="pill">实际回答</span></div>
+          <p class="muted small">选择一道面试题，录制电脑麦克风或输入你实际说过的话。AI 参考答案不会作为你的回答参与评价。</p>
+          <p id="practice-empty" class="notice">先添加一道练习题，也可从已听到的面试问题中选择。</p>
+          <details class="practice-new"><summary>添加练习题（无需请求模型）</summary><label for="practice-new-question">问题或下一轮追问</label><textarea id="practice-new-question" rows="2" maxlength="12000" placeholder="例如：请介绍一个你解决过的技术难题。"></textarea><button id="practice-add-question" class="button light" type="button">添加练习题</button></details>
+          <label for="practice-question">本次练习的问题</label><select id="practice-question"></select>
+          <p id="practice-question-text" class="practice-question"></p>
+          <label for="practice-microphone">电脑麦克风</label><div class="screen-display-row"><select id="practice-microphone"><option value="">系统默认输入设备</option></select><button id="practice-refresh" class="icon-button" type="button" aria-label="刷新麦克风">↻</button></div>
+          <p id="practice-device-notice" class="small muted" role="status"></p>
+          <div class="soundline"><div class="meter"><progress id="practice-level" max="100" value="0" aria-label="麦克风电平"></progress></div><span id="practice-level-text">点击录音后显示电平</span></div>
+          <div class="screen-buttons"><button id="practice-record" class="button primary" type="button">录我的回答</button><button id="practice-finish" class="button danger" type="button" hidden>结束录音并转写</button></div>
+          <p id="practice-notice" class="small" role="status"></p>
+          <label for="practice-answer">我的回答（可校正转写）</label><textarea id="practice-answer" rows="6" maxlength="12000" placeholder="录音文字会显示在这里，也可以直接输入你的回答。"></textarea>
+          <p id="practice-dirty" class="small muted" role="status"></p>
+          <div class="screen-buttons"><button id="practice-save" class="button light" type="button">保存文字</button><button id="practice-review" class="button primary" type="button">生成复盘 →</button></div>
+          <p class="help">录音固定关联当前题，再次录音会追加文字；单次最多 5 分钟。建议戴耳机，避免扬声器声音被麦克风再次录入。录音分段发送至已配置的识别服务，不保存音频文件；生成复盘会发送本题、你的回答、岗位和简历。</p>
+        </section>
+        <section class="practice-card card"><div class="section-head"><h2>有依据的改进建议</h2><button id="practice-export" class="text-button" type="button">导出复盘</button></div><p id="practice-review-status" class="small muted"></p><div id="practice-review-text" class="answer-body">完成回答后，查看说清楚的点、遗漏、改进示例和下一轮追问。</div><p id="practice-review-error" class="form-error" role="alert" hidden></p><p class="help">依据文字评价内容与表达结构，不评价声音表现。记录仅保留在本次电脑会话中；清空或重启前，请先导出。</p></section>
+      </section>
+      <section id="screen-pane" role="tabpanel" aria-labelledby="screen-tab" hidden>
+        <section class="screen-card card">
+          <div class="section-head"><h2>看见题目，自动解答。</h2><span class="pill">后台监测</span></div>
+          <p class="muted small">开启一次，电脑后台检查题目画面，稳定后自动解答。电脑不弹出截图窗口，答案同步到手机。</p>
+          <fieldset id="screen-options" class="screen-options">
+            <label>电脑显示器<div class="screen-display-row"><select id="screen-monitor"><option value="">请刷新屏幕列表</option></select><button id="screen-refresh" class="icon-button" type="button" aria-label="刷新屏幕列表">↻</button></div></label>
+            <div class="screen-grid"><label>解题模型<select id="screen-backend"><option value="codex">Codex · 已登录账户</option><option value="api">兼容 API · 需支持图片</option></select></label><label>输出方式<select id="screen-style"><option value="brief">答案和简短解析</option><option value="steps">详细解题步骤</option><option value="code">代码与说明</option></select></label></div>
+            <p class="help">Codex 沿用设置中的 GPT 模型；兼容 API 沿用其地址、模型和密钥。屏幕解题无需语音识别密钥。</p>
+            <div class="screen-buttons"><button id="screen-preview" class="button light" type="button">预览并框选</button><button id="screen-full" class="text-button" type="button">使用整块屏幕</button></div>
+            <div id="screen-preview-wrap" hidden><p class="small muted">在预览上拖动框选题目；实际解题时会重新截取该区域。</p><canvas id="screen-canvas" aria-label="电脑屏幕预览，可拖动框选；也可使用下方的区域坐标" role="img"></canvas></div>
+            <p id="screen-region-label" class="small">范围：整块屏幕</p>
+            <details class="screen-coordinates"><summary>精确调整框选范围（百分比）</summary><div class="screen-grid"><label>左侧位置<input id="screen-x" type="number" min="0" max="99" step="0.1" value="0"></label><label>顶部位置<input id="screen-y" type="number" min="0" max="99" step="0.1" value="0"></label><label>宽度<input id="screen-width" type="number" min="0.1" max="100" step="0.1" value="100"></label><label>高度<input id="screen-height" type="number" min="0.1" max="100" step="0.1" value="100"></label></div></details>
+            <label>补充要求（可选）<textarea id="screen-instruction" maxlength="2000" rows="2" placeholder="例如：只解答第 3 题；使用 Python。"></textarea></label>
+            <div class="screen-grid"><label>检查间隔<select id="screen-interval"><option value="2">每 2 秒</option><option value="3">每 3 秒</option><option value="5">每 5 秒</option><option value="10">每 10 秒</option></select></label><label>画面变化敏感度<select id="screen-sensitivity"><option value="normal">标准</option><option value="high">较高 · 小改动也识别</option><option value="low">较低 · 减少误触发</option></select></label></div>
+          </fieldset>
+          <div class="screen-buttons"><button id="screen-monitor-toggle" class="button primary" type="button">开始自动监测</button><button id="screen-ask" class="button light" type="button">单次截图解题 ↑</button><button id="screen-hotkey" class="button light" type="button">启用快捷键</button></div>
+          <p id="screen-status" class="small" role="status">自动监测尚未开启。</p>
+          <p class="help">开启后会先解答当前画面，随后只提交变化且连续两次检查稳定的画面；近期相似画面不重复提交。建议只框选题目，排除倒计时、视频和通知，减少误触发。停止监测会同时取消正在生成的自动回答。</p>
+          <p class="help">快捷键：Ctrl + Alt + S。启用后使用当前屏幕与框选范围，关闭后可修改；点击“停止”也会关闭快捷键。</p>
+          <p class="help">画面比较在电脑本机进行，预览仅发送到手机；自动提交或单次解题的截图会发送至所选模型服务并消耗额度，不保存为本地图片文件。请框选完整题干、选项和图表。</p>
+        </section>
+      </section>
+      <section id="controls-pane" role="tabpanel" aria-labelledby="controls-tab" hidden>
+        <section class="capture card"><div class="section-head"><h2>电脑声音来源</h2><button id="refresh-devices" class="icon-button" aria-label="刷新声音设备">↻</button></div><label class="device-field"><span class="field-label">面试软件使用的耳机或扬声器</span><select id="device"><option value="">跟随系统默认输出设备</option></select></label><div class="soundline"><div class="meter" aria-label="系统声音电平"><progress id="level" max="100" value="0"></progress></div><span id="sound-hint">选择会议正在使用的耳机或扬声器</span></div><p id="audio-level-detail" class="capture-note"></p><p id="active-device" class="capture-note"></p><p id="device-notice" class="form-error" role="status" hidden></p><p id="device-refresh-status" class="capture-note">设备列表每 3 秒自动刷新；监听中也可切换来源。</p><p class="capture-note">采集发生在电脑上，手机无需开启麦克风。点击开始后，电脑声音发送至配置的识别服务。</p></section>
+          <section class="context-card card" aria-label="上下文管理">
+            <div><span id="context-label" class="field-label">上下文</span><strong id="context-summary">API · 最近几轮问答</strong><p id="context-detail" class="small muted">拟答稿不代表你实际说过的话。</p></div>
+            <div class="context-actions"><button id="compact-context" class="button light" hidden>压缩上下文</button><button id="new-context" class="text-button">新建会话</button></div>
+          </section>
+          <section class="transcript-card card"><div class="section-head"><h2>听到的内容</h2><span class="tiny-index">02</span></div><p id="asr-timing" class="small muted">识别耗时会在收到结果后显示</p><div id="draft" class="draft" hidden></div><div id="transcripts" class="transcripts"><p class="muted small">完成语音识别后显示。可点选一条内容，修改后重新回答。</p></div></section>
+
+        <section class="practice-card card"><div class="section-head"><h2>设备与连接诊断</h2><button id="run-diagnostics" class="button light" type="button">开始检查</button></div><div id="diagnostic-results" aria-live="polite"><p class="small muted">检查采集设备、模型配置和控制台连接，不会开启录音或调用模型。</p></div></section>
+        <p class="phone-footnote">听答采用 MIT 协议，完整本地功能免费。<a class="text-button" href="/static/services.html" target="_blank" rel="noopener noreferrer">需要安装或上手帮助？↗</a></p>
+        <p class="phone-footnote">电脑后台持续运行。停止监听会保留上下文，新建会话会清空问答。</p>
+      </section>
+      <p class="phone-footnote">手机暂时断线时电脑仍继续工作。返回页面后自动重连并恢复当前会话。</p>
+    </div>
+  </main>
+</div>
+<div id="phone-actions" class="phone-actionbar" hidden><div><button id="start" class="button primary" disabled>▶ 开始监听</button><button id="stop" class="button danger" hidden>■ 停止</button><button id="go-latest" class="text-button">最新回答 ↑</button></div></div>
+  <dialog id="settings-dialog"><form id="settings-form">
+    <div class="dialog-head"><div><p class="eyebrow">MAKE IT YOURS</p><h2>模型与个人资料</h2></div><button id="close-settings" type="button" class="icon-button" aria-label="关闭设置">×</button></div>
+    <p class="muted small">可使用本机 Codex、Claude Code 或兼容 API 回答。语音识别仍需单独配置。</p>
+    <fieldset><legend>01 / 回答与上下文</legend>
+      <label>回答方式<select name="answer_backend" id="answer-backend"><option value="codex">Codex CLI · 持续会话</option><option value="claude">Claude Code · 本地配置 / DeepSeek</option><option value="api">兼容 API · 最近几轮问答</option></select></label>
+      <div id="api-fields"><label>API Base URL<input name="llm_base_url" required type="url" placeholder="https://api.deepseek.com"></label><div class="form-grid"><label>模型名称<input name="llm_model" maxlength="200" placeholder="填写服务商控制台中的模型 ID"></label><label>API Key<input name="llm_api_key" type="password" autocomplete="new-password" placeholder="粘贴回答模型的密钥"></label></div><p class="help">需支持 Chat Completions 流式接口。保留最近 4 条记录中的有效问答。</p></div>
+      <div id="codex-fields" hidden><div class="form-grid"><label>GPT 模型<select name="codex_model" id="codex-model"><option value="">沿用 Codex 默认设置</option></select></label><label>推理强度<select name="codex_effort"><option value="low">低 · 优先响应速度</option><option value="medium">中</option><option value="high">高 · 等待可能更久</option></select></label></div><div class="cli-check"><button id="refresh-codex-models" type="button" class="button light">刷新模型列表</button><span id="codex-model-status" class="small muted" role="status">打开设置后自动读取可选模型</span></div><label class="check-label"><input type="checkbox" name="codex_fast">Fast 快速档（增加账户额度消耗）</label><label>单次回答超时（秒）<input name="codex_timeout_seconds" type="number" min="15" max="300" step="1"></label><div class="cli-check"><button id="check-codex" type="button" class="button light">检查 Codex 登录</button><span id="codex-status" class="small muted">按已保存的配置检查</span></div><p class="help">使用电脑上 Codex 的登录状态和账户额度。每场面试独立会话，支持流式输出与历史压缩。语音识别仍需 API 配置。</p></div>
+      <div id="claude-fields" hidden><label>Claude Code 模型（可留空）<input name="claude_model" maxlength="200" placeholder="沿用本机 ANTHROPIC_MODEL 或默认模型"></label><label class="check-label"><input type="checkbox" name="claude_direct">直连模型服务（忽略 HTTP 代理环境变量）</label><label>单次回答超时（秒）<input name="claude_timeout_seconds" type="number" min="15" max="300" step="1"></label><div class="cli-check"><button id="check-claude" type="button" class="button light">检查本机 Claude Code</button><span id="claude-status" class="small muted">按已保存的配置检查，不发起模型请求</span></div><p class="help">使用电脑 Claude Code 的 API Key / 认证令牌与服务地址；支持已配置的 DeepSeek。每次携带简历、最近 4 条记录中的有效问答与最近问题原文，不接入其他 Claude Code 会话。直连选项不会修改系统 VPN。语音识别仍需单独配置。</p></div>
+      <p class="help">更换回答方式、CLI 模型或个人资料，会开始新会话并清空当前问答。</p>
+    </fieldset>
+    <fieldset><legend>02 / 语音识别</legend><label>识别服务<select name="asr_provider" id="asr-provider"><option value="minimax">MiniMax ASR</option><option value="compatible">兼容转写接口</option></select></label><label>API Base URL<input name="asr_base_url" required type="url" placeholder="https://api.siliconflow.cn/v1"></label><div class="form-grid"><label>模型名称<input name="asr_model" maxlength="200" placeholder="FunAudioLLM/SenseVoiceSmall"></label><label>API Key<input name="asr_api_key" type="password" autocomplete="new-password" placeholder="粘贴语音识别的密钥"></label></div><p class="help">MiniMax 使用 asr-1.0 短音频转写；长问题提前分段识别，说完后合并生成回答。</p></fieldset>
+    <fieldset><legend>03 / 让回答贴近你</legend><label>目标岗位<input name="role" maxlength="200" placeholder="例如：光学工程师 / 算法工程师"></label><label>简历与补充资料（系统提示词）<textarea name="background" rows="4" maxlength="12000" placeholder="填写真实的教育背景、项目职责和成果。已导入的简历可在这里补充。"></textarea></label><p class="help">这些资料会作为系统提示词提供给回答模型。直接生成第一人称回答，经历和数据以资料为依据。</p></fieldset>
+    <details class="advanced"><summary>识别与回答设置</summary><div class="form-grid"><label>停顿多久提交识别（秒）<input name="silence_seconds" type="number" min="0.4" max="3" step="0.1" required></label><label>续句合并间隔（秒）<input name="question_merge_seconds" type="number" min="0" max="5" step="0.1" required></label><label>采集增益（倍）<input name="audio_gain" type="number" min="1" max="16" step="0.5" value="1" required></label><label>声音检测阈值<input name="energy_threshold" type="number" min="0.001" max="0.1" step="0.001" required></label><label>API 回答输出上限（token）<input name="max_tokens" type="number" min="128" max="4000" step="1" required></label><label>长问题提前识别间隔（秒）<input name="asr_chunk_seconds" type="number" min="2" max="12" step="0.5" required></label><label>识别语言（可留空）<input name="asr_language" maxlength="10" placeholder="zh / en"></label></div><label class="check-label"><input type="checkbox" name="auto_answer">识别完一段话后自动生成回答</label><p class="help">采集增益只影响识别，不改变耳机音量；默认 1 倍，小声漏字可尝试 2—4 倍。误触发时降低增益或提高阈值。已检测到的语音会自动补足音量并限制峰值。句中停顿被拆开时，提高续句合并间隔；0 表示不自动合并。短停顿先识别，等待说完后回答，续句更新同一张问题卡片。</p></details>
+    <p id="settings-error" class="form-error" role="alert" hidden></p><div class="dialog-footer"><span id="key-status" class="small muted"></span><button type="submit" class="button primary">保存设置</button></div>
+  </form></dialog>
+<div id="toast" class="toast" role="status" hidden></div>
+</body></html>
