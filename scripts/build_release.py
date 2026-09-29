@@ -1,4 +1,4 @@
-"""Build public source and service-page archives from an explicit source manifest.
+"""Build public source and introduction-page archives from an explicit source manifest.
 
 No third-party dependencies, credentials, local settings or runtime files are read.
 Outputs stay in .local/releases; this script never uploads or publishes anything.
@@ -60,8 +60,10 @@ def build():
         raise ValueError("Source download link changed; update the site export mapping")
     page = page.replace("源码已在 GitHub 开放。下载 ZIP 后解压，双击“安装并启动听答.cmd”。", "下载源码后解压，双击“安装并启动听答.cmd”。模型账户与调用费用自备。")
     (site / "index.html").write_text(page, encoding="utf-8")
-    site_files = ["index.html", "services.css", "services.js", "icon.svg", "LICENSE.txt", "tingda-source.zip"]
-    for name in ("services.css", "services.js", "icon.svg"):
+    # Remove the retired booking script from earlier local exports too.
+    (site / "services.js").unlink(missing_ok=True)
+    site_files = ["index.html", "services.css", "icon.svg", "LICENSE.txt", "tingda-source.zip"]
+    for name in ("services.css", "icon.svg"):
         (site / name).write_bytes((ROOT / "web" / name).read_bytes())
     (site / "LICENSE.txt").write_bytes((ROOT / "LICENSE").read_bytes())
     (site / "tingda-source.zip").write_bytes(source.read_bytes())
@@ -76,12 +78,12 @@ def build():
     (OUTPUT / "README.txt").write_text(
         "听答发布材料（仅本地生成，未上传）\n\n"
         "tingda-source.zip：MIT 源码，解压后在 tingda 目录运行安装脚本。\n"
-        "tingda-service-site.zip：公开服务页，可将全部内容解压到静态托管目录；包含免费源码下载。\n"
+        "tingda-service-site.zip：公开介绍页，可将全部内容解压到静态托管目录；包含免费源码下载。\n"
         "site/index.html：同一展示站的本地预览。\n"
         "SHA256SUMS.txt：校验值。\n\n"
         "请只托管展示站，不要把 8765 本机控制服务暴露到公网。\n"
-        "此包没有支付或自动发送邮件功能，咨询由用户用自己的邮箱发送。\n"
-        "已有包是本次构建的快照；修改代码、价格或文案后须重新构建。\n",
+        "有问题可以通过介绍页中的邮箱联系作者。\n"
+        "已有包是本次构建的快照；修改代码或文案后须重新构建。\n",
         encoding="utf-8",
     )
     print(f"Source: {source} ({len(files)} files)")

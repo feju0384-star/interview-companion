@@ -4,18 +4,17 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f6f5f0">
-  <meta name="description" content="听答是一款 MIT 开源的 Windows AI 面试辅助工具。电脑转写问题、AI 生成参考回答、手机查看与控制，支持屏幕题目解析和实际回答复盘。可免费自部署，也可预约安装与上手服务。">
-  <title>听答 · 开源 AI 面试辅助工具与安装服务</title>
+  <meta name="description" content="听答是一款 MIT 开源的 Windows AI 面试辅助工具。电脑转写问题、AI 生成参考回答、手机查看与控制，支持屏幕题目解析和实际回答复盘。有问题可以联系我。">
+  <title>听答 · 开源 AI 面试辅助工具</title>
   <link rel="icon" href="./icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./services.css">
-  <script src="./services.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">跳到正文</a>
   <div class="page-shell">
     <header class="site-header">
       <a class="brand" href="#"><img src="./icon.svg" width="38" height="38" alt=""><span>听答</span><small>MIT 开源</small></a>
-      <nav aria-label="页面导航"><a href="#how">怎么用</a><a href="#plans">服务与价格</a><a href="#booking">联系作者 ↗</a></nav>
+      <nav aria-label="页面导航"><a href="#how">怎么用</a><a href="#self-host">下载源码</a><a href="#contact">联系我 ↗</a></nav>
     </header>
     <main id="main">
       <section class="hero" aria-labelledby="hero-title">
@@ -23,8 +22,8 @@
           <p class="eyebrow"><span class="status-dot"></span> 开源 AI 面试辅助工具</p>
           <h1 id="hero-title">电脑听取问题，<br><span>手机查看参考。</span></h1>
           <p class="hero-copy">转写面试问题，结合岗位与简历生成参考回答。<br>支持屏幕题目解析，也能记录自己的回答做复盘。</p>
-          <div class="actions"><a class="button primary" href="#plans">找人帮我装好 <span aria-hidden="true">↗</span></a><a class="button secondary" href="#self-host">我想免费自部署</a></div>
-          <p class="hero-note">软件免费。需要有人帮忙时，为安装和上手服务付费。</p>
+          <div class="actions"><a class="button primary" href="#self-host">下载开源工具 <span aria-hidden="true">↓</span></a><a class="button secondary" href="#contact">有问题？联系我 ↗</a></div>
+          <p class="hero-note">MIT 开源，完整本地功能免费。模型与语音识别账户自备。</p>
           <ul class="feature-strip"><li>系统声音转写</li><li>手机查看参考回答</li><li>屏幕题目解析</li></ul>
         </div>
         <aside class="review-preview" aria-label="虚构的问题转写与参考回答示例">
@@ -47,66 +46,31 @@
         </div>
       </section>
 
-      <section class="section" id="plans" aria-labelledby="plans-title">
-        <div class="section-heading split-heading"><div><p class="eyebrow">按你需要的帮助选择</p><h2 id="plans-title">自己装免费。有人带，更省心。</h2></div><p>首轮试卖价格 · 按次预约<br>模型与语音识别费用另付给服务商</p></div>
-        <div class="pricing-grid">
-          <article class="price-card" id="self-host">
-            <p class="plan-kicker">愿意自己配置</p><h3>开源自部署</h3>
-            <p class="price">¥0<span> / 软件</span></p>
-            <p class="plan-description">完整本地功能，自选模型与识别服务。</p>
-            <ul><li>MIT 许可，无软件激活费用</li><li>安装脚本与设备连接诊断</li><li>实际回答录音、复盘与导出</li><li>自行准备账户、配置和排障</li></ul>
-            <a id="source-link" class="button secondary" href="https://github.com/feju0384-star/interview-companion/archive/refs/heads/main.zip">免费下载 MIT 源码 ↓</a>
-            <p class="card-note" id="source-note">源码已在 GitHub 开放。下载 ZIP 后解压，双击“安装并启动听答.cmd”。</p>
-          </article>
-          <article class="price-card featured">
-            <span class="card-badge">先把工具用起来</span>
-            <p class="plan-kicker">不想卡在配置上</p><h3>安装连通</h3>
-            <p class="price">¥99<span> / 次</span></p>
-            <p class="plan-description">作者协助你把设备和模型连起来。</p>
-            <ul><li>1 台 Windows 电脑 + 1 部手机</li><li>安装、配对与设备排查</li><li>接通 1 个回答模型 + 1 个识别服务</li><li>验证文字问答与一句麦克风转写</li><li>预约 60 分钟；3 天内同问题邮件跟进 1 次</li></ul>
-            <a class="button primary plan-link" href="#booking" data-plan="setup">预约安装连通 ↗</a>
-            <p class="card-note">先确认兼容性与服务范围，预约无需付款。</p>
-          </article>
-          <article class="price-card">
-            <p class="plan-kicker">想有人带着走一遍</p><h3>练习上手</h3>
-            <p class="price">¥199<span> / 次</span></p>
-            <p class="plan-description">装好之后，完成你的第一份练习报告。</p>
-            <ul><li>包含安装连通的全部操作</li><li>指导填写岗位与简历背景</li><li>完成 1 题录音、校正、AI 复盘与导出</li><li>示范如何用追问继续练习</li><li>预约共 90 分钟；7 天内 1 次 15 分钟答疑</li></ul>
-            <a class="button secondary plan-link" href="#booking" data-plan="practice">预约练习上手 ↗</a>
-            <p class="card-note">提供工具使用指导，评价由 AI 生成；不含人工面试辅导。</p>
-          </article>
-        </div>
-        <div class="scope-note"><strong>预约前确认</strong><p>当前服务面向 Windows 10 / 11 的 64 位电脑，手机与电脑需在同一局域网。模型账户及调用费用自备，密钥由你自己填写。超出时长、更换设备或新增需求另行约定。订阅和机构版尚未开放购买。</p></div>
+      <section class="section" id="self-host" aria-labelledby="download-title">
+        <p class="eyebrow">MIT 开源 · Windows 本地运行</p>
+        <h2 id="download-title">下载后开始使用</h2>
+        <p>完整本地功能，自选模型与识别服务。支持 Windows 10 / 11（64 位），手机与电脑需在同一局域网。</p>
+        <a id="source-link" class="button secondary" href="https://github.com/feju0384-star/interview-companion/archive/refs/heads/main.zip">免费下载 MIT 源码 ↓</a>
+        <p class="hero-note" id="source-note">源码已在 GitHub 开放。下载 ZIP 后解压，双击“安装并启动听答.cmd”。</p>
       </section>
 
-      <section class="section booking-section" id="booking" aria-labelledby="booking-title">
-        <div class="booking-intro"><p class="eyebrow">把你卡住的地方告诉我</p><h2 id="booking-title">先确认能帮上忙，<br>再约时间。</h2><p>下面的信息只在你的浏览器里整理成邮件草稿。打开邮箱并自行发送后，作者才会收到。</p><a class="contact-email" href="mailto:2806391703@qq.com">2806391703@qq.com ↗</a><p class="small">服务提供者：刘顺洋<br>付款方式、时间及取消 / 未完成时的处理方式，在服务前通过邮件确认。</p><p class="small">无需在咨询中发送密码、API 密钥或完整简历。</p></div>
-        <div class="inquiry-card">
-          <noscript><p>你的浏览器未启用 JavaScript。请直接给左侧邮箱发送所选服务、Windows 版本、当前问题和方便的时间。</p></noscript>
-          <div id="inquiry-builder" hidden>
-            <div class="field-row"><label>我需要的服务<select id="service-plan"><option value="setup">安装连通 · ¥99 / 次</option><option value="practice">练习上手 · ¥199 / 次</option></select></label><label>电脑系统<select id="computer-system"><option>Windows 11 · 64 位</option><option>Windows 10 · 64 位</option><option>其他 / 不确定，先确认兼容性</option></select></label></div>
-            <label>现在卡在哪里？<textarea id="inquiry-problem" rows="3" maxlength="600" placeholder="例如：电脑能打开，手机扫码后连不上；还没有配置语音识别。"></textarea></label>
-            <label>方便的时间（选填）<input id="inquiry-time" maxlength="100" placeholder="例如：周六下午，北京时间"></label>
-            <details class="draft-details"><summary>查看 / 手动复制邮件草稿</summary><label class="draft-label" for="inquiry-draft">可全选复制到你常用的邮箱</label><textarea id="inquiry-draft" rows="10" readonly spellcheck="false"></textarea></details>
-            <div class="actions"><a id="email-inquiry" class="button primary" href="mailto:2806391703@qq.com">打开邮箱预约 ↗</a><button id="copy-inquiry" class="button secondary" type="button">复制咨询内容</button></div>
-            <p class="small">没有弹出邮箱？复制内容后，发送到 2806391703@qq.com。预约不代表已排期或已付款。</p>
-            <p id="inquiry-status" class="status-message" role="status" aria-live="polite"></p>
-          </div>
-        </div>
+      <section class="section" id="contact" aria-labelledby="contact-title">
+        <span id="booking" aria-hidden="true"></span>
+        <h2 id="contact-title">有问题可以联系我</h2>
+        <a class="contact-email" href="mailto:2806391703@qq.com">2806391703@qq.com ↗</a>
       </section>
 
       <section class="section faq-section" aria-labelledby="faq-title">
         <div><p class="eyebrow">把边界说清楚</p><h2 id="faq-title">常见问题</h2></div>
         <div class="faq-list">
-          <details><summary>免费版会少功能吗？</summary><p>当前本地功能均在 MIT 源码中，没有付费解锁。收费项目是作者提供的安装、连接排查和工具上手服务。MIT 允许按其条件使用、修改、分发和商业使用，需保留版权与许可声明。</p></details>
-          <details><summary>付费之后，AI 可以无限用吗？</summary><p>不可以。以上是一次性人工服务价格，不含模型订阅、API 余额或语音识别额度。你用自己的账户，调用费用和服务可用性以对应服务商为准。</p></details>
-          <details><summary>麦克风和简历会发到哪里？</summary><p>麦克风由你主动开启；音频分段发送给你配置的识别服务。生成复盘时，问题、实际回答、岗位和简历会发送给所选模型服务。当前会话存于电脑进程内，清空或重启前请导出；云端保留政策以服务商为准。这个服务介绍页不读取应用设置，也不接收录音和简历。</p></details>
-          <details><summary>可以保证面试通过吗？</summary><p>不能。听答帮助你练习表达和发现遗漏，AI 评价仍可能出错，不能代替招聘方判断。请用于模拟面试和获得允许的练习场景。</p></details>
-          <details><summary>有没有登录即用的订阅版、机构版？</summary><p>尚未开放购买。可以邮件说明人数、使用场景和部署需求，用于后续评估；当前不收订阅费，也不预售调用额度。</p></details>
+          <details><summary>开源包含哪些功能？</summary><p>当前完整本地功能均在 MIT 源码中。MIT 允许按其条件使用、修改、分发和商业使用，需保留版权与许可声明。</p></details>
+          <details><summary>模型账户怎么配置？</summary><p>使用自己的回答模型和语音识别账户，在手机设置中配置。调用费用和服务可用性以对应服务商为准。</p></details>
+          <details><summary>音频、截图和简历会发到哪里？</summary><p>采集由你主动开启；音频发送给配置的识别服务，问题、岗位与简历发送给回答模型，屏幕解析发送所选区域的截图。生成复盘时另行发送实际回答。当前会话存于电脑进程内，清空或重启前请导出；云端保留政策以服务商为准。这个介绍页不读取应用设置，也不接收录音和简历。</p></details>
+          <details><summary>AI 参考回答准确吗？</summary><p>转写、识题、参考回答与复盘都可能出错，需要自行核对。请用于允许辅助工具的面试、模拟面试等场景。</p></details>
         </div>
       </section>
     </main>
-    <footer class="site-footer"><span>© 2026 刘顺洋 · 听答</span><span>MIT 开源软件 + 按次人工服务</span><a href="mailto:2806391703@qq.com">联系作者 ↗</a></footer>
+    <footer class="site-footer"><span>© 2026 刘顺洋 · 听答</span><span>MIT 开源 · AI 面试辅助工具</span><a href="mailto:2806391703@qq.com">有问题？联系我 ↗</a></footer>
   </div>
 </body>
 </html>

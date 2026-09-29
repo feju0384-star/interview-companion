@@ -34,13 +34,15 @@ See the [full Chinese guide](docs/使用指南.md) for provider setup, troublesh
 
 ## Cost and data
 
-The complete local functionality is MIT licensed with no software activation fee. You supply your own provider accounts and pay their usage charges. Optional author setup services are described in the [Chinese README](README.md#免费软件与可选作者服务).
+The complete local functionality is MIT licensed with no software activation fee. You supply your own provider accounts and pay their usage charges.
 
 Capture starts when you enable it. Audio segments go to your configured speech recognition provider; questions, role and résumé context go to the answer model. Screen analysis sends the selected region to the image-capable model. Review requests additionally include your actual answer. Provider data policies apply. Session history lives in process memory; export reviews before clearing or restarting the service. Keep the desktop control server on a trusted local network.
 
 Transcription, image interpretation, reference answers and feedback can be wrong. Use Tingda in interviews where assistance is permitted, mock interviews and similar settings, and verify the output yourself.
 
 ## Feedback and license
+
+Questions? Contact me at [2806391703@qq.com](mailto:2806391703@qq.com).
 
 [Report an issue](https://github.com/feju0384-star/interview-companion/issues/new/choose) with your environment, reproduction steps and redacted errors. Never post API keys, pairing links, recordings or private résumé details. Contributions that improve installation, device compatibility, transcription, reference answers and screen analysis are welcome.
 

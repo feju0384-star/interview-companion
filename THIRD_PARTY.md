@@ -14,4 +14,4 @@
 - [python-qrcode](https://github.com/lincolnloop/python-qrcode)
 - [Pillow](https://github.com/python-pillow/Pillow)
 
-页面使用本机系统字体，没有打包商业字体、远程字体或第三方图片。模型和语音识别账户由使用者自行准备，相关调用费用不包含在免费源码或安装服务费用中。
+页面使用本机系统字体，没有打包商业字体、远程字体或第三方图片。模型和语音识别账户由使用者自行准备，相关调用费用由使用者向对应服务商支付。
