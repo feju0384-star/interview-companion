@@ -1,5 +1,5 @@
 name: 功能建议 / Feature request
-description: 描述你在面试练习中遇到的具体困难
+description: 描述你在使用面试辅助工具时遇到的具体困难
 title: "[建议] "
 body:
   - type: textarea

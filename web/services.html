@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f6f5f0">
-  <meta name="description" content="听答是一款 MIT 开源的 Windows 面试练习工具。记录自己的回答，校正转写，获得 AI 复盘。可免费自部署，也可预约作者安装与上手服务。">
-  <title>听答 · 开源面试练习与安装服务</title>
+  <meta name="description" content="听答是一款 MIT 开源的 Windows AI 面试辅助工具。电脑转写问题、AI 生成参考回答、手机查看与控制，支持屏幕题目解析和实际回答复盘。可免费自部署，也可预约安装与上手服务。">
+  <title>听答 · 开源 AI 面试辅助工具与安装服务</title>
   <link rel="icon" href="./icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./services.css">
   <script src="./services.js" defer></script>
@@ -15,35 +15,35 @@
   <div class="page-shell">
     <header class="site-header">
       <a class="brand" href="#"><img src="./icon.svg" width="38" height="38" alt=""><span>听答</span><small>MIT 开源</small></a>
-      <nav aria-label="页面导航"><a href="#how">怎么练</a><a href="#plans">服务与价格</a><a href="#booking">联系作者 ↗</a></nav>
+      <nav aria-label="页面导航"><a href="#how">怎么用</a><a href="#plans">服务与价格</a><a href="#booking">联系作者 ↗</a></nav>
     </header>
     <main id="main">
       <section class="hero" aria-labelledby="hero-title">
         <div>
-          <p class="eyebrow"><span class="status-dot"></span> 让每次练习，都有下一步</p>
-          <h1 id="hero-title">把回答说出来，<br><span>把问题练明白。</span></h1>
-          <p class="hero-copy">用你的岗位、简历和实际回答做练习。<br>录下来，改准文字，再看看哪里没说清楚。</p>
+          <p class="eyebrow"><span class="status-dot"></span> 开源 AI 面试辅助工具</p>
+          <h1 id="hero-title">电脑听取问题，<br><span>手机查看参考。</span></h1>
+          <p class="hero-copy">转写面试问题，结合岗位与简历生成参考回答。<br>支持屏幕题目解析，也能记录自己的回答做复盘。</p>
           <div class="actions"><a class="button primary" href="#plans">找人帮我装好 <span aria-hidden="true">↗</span></a><a class="button secondary" href="#self-host">我想免费自部署</a></div>
           <p class="hero-note">软件免费。需要有人帮忙时，为安装和上手服务付费。</p>
-          <ul class="feature-strip"><li>Windows 本地运行</li><li>手机控制练习</li><li>实际回答复盘</li></ul>
+          <ul class="feature-strip"><li>系统声音转写</li><li>手机查看参考回答</li><li>屏幕题目解析</li></ul>
         </div>
-        <aside class="review-preview" aria-label="虚构的练习与复盘示例">
-          <div class="preview-header"><span>一次练习，一处进步</span><span class="example-tag">虚构示例</span></div>
-          <p class="example-question">“讲一次你解决问题的经历。”</p>
-          <div class="answer-sample"><span class="label">我的实际回答</span><p>我发现接口有问题，然后找同事一起修好了。</p></div>
-          <div class="review-sample"><span class="label">还可以说清楚的地方</span><p>你提到了“修好了”，但没有说明：<strong>你如何定位问题，以及怎样验证修复有效。</strong></p></div>
-          <div class="follow-up"><span aria-hidden="true">↳</span><p>下一轮追问<br><strong>你当时做了哪些验证？</strong></p></div>
-          <div class="preview-footer"><span>你的回答</span><i aria-hidden="true">→</i><span>具体建议</span><i aria-hidden="true">→</i><span>再练一次</span></div>
-          <p class="example-note">用于说明复盘形式，不是用户案例或效果承诺。</p>
+        <aside class="review-preview" aria-label="虚构的问题转写与参考回答示例">
+          <div class="preview-header"><span>问题在电脑，参考在手机</span><span class="example-tag">虚构示例</span></div>
+          <p class="example-question">“接口偶发超时，你会怎么排查？”</p>
+          <div class="answer-sample"><span class="label">问题转写</span><p>如果线上接口偶发超时，你会怎么排查？</p></div>
+          <div class="review-sample"><span class="label">AI 参考回答</span><p>先确认影响范围，再结合日志和监控，<strong>区分请求排队、下游调用慢或资源不足。</strong>核对近期变更，修复后验证结果。</p></div>
+          <div class="follow-up"><span aria-hidden="true">↳</span><p>扩展功能<br><strong>录下自己的回答，再做复盘。</strong></p></div>
+          <div class="preview-footer"><span>电脑转写</span><i aria-hidden="true">→</i><span>AI 参考回答</span><i aria-hidden="true">→</i><span>手机查看</span></div>
+          <p class="example-note">虚构问题与模拟回答，用于说明功能，不是效果承诺。</p>
         </aside>
       </section>
 
       <section class="section process-section" id="how" aria-labelledby="how-title">
-        <div class="section-heading"><p class="eyebrow">一次完整的练习</p><h2 id="how-title">从“看过答案”，到“自己讲得清楚”。</h2></div>
+        <div class="section-heading"><p class="eyebrow">电脑与手机配合使用</p><h2 id="how-title">听取问题，生成参考，手机掌控。</h2></div>
         <div class="process-grid">
-          <article><span class="step">01 / 准备</span><h3>带上你的岗位与经历</h3><p>填写岗位和简历，添加想练的问题。自己的经历，自己核对。</p></article>
-          <article><span class="step">02 / 表达</span><h3>真的回答一次</h3><p>主动开启电脑麦克风，录下回答；也可以直接输入。生成复盘前先校正转写。</p></article>
-          <article><span class="step">03 / 改进</span><h3>带着追问再练</h3><p>AI 根据实际回答找遗漏、给改进示例和追问。导出 Markdown，留下这次练习。</p></article>
+          <article><span class="step">01 / 听取</span><h3>电脑转写面试问题</h3><p>选择实际使用的耳机或扬声器，主动开始监听。也可以手动输入或校正问题。</p></article>
+          <article><span class="step">02 / 辅助</span><h3>结合背景生成参考回答</h3><p>填写目标岗位与简历，AI 结合问题上下文生成参考内容。需要图片解析时，切换到屏幕解题。</p></article>
+          <article><span class="step">03 / 控制</span><h3>手机查看与操作</h3><p>浏览器扫码配对，查看答案、切换设置、停止采集与管理会话。实际回答录音和复盘也在手机控制。</p></article>
         </div>
       </section>
 

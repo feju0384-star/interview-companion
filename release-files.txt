@@ -50,6 +50,8 @@ docs/试卖执行手册.md
 docs/使用指南.md
 docs/images/practice-answer.png
 docs/images/practice-review.png
+docs/images/reference-answer.png
+docs/images/screen-answer.png
 docs/releases/v0.1.0.md
 scripts/build_release.py
 tests/audio_smoke.py
